@@ -1,38 +1,17 @@
 import { generateSeats } from '../utiils'
-const createSeats = (type, price) => {
-    return {
-        type,
-        price,
-    }
-};
 
-const platinumSeats = createSeats('Platinum', 320);
-const goldSeats = createSeats('Gold', 280);
-const silverSeats = createSeats('Silver', 240);
-
-const initialState = [
-    {
-        showId: '1',
-        displayName: 'Show 1',
-        seatSelected: [],
-        selecedSeatPrice: [
-
-        ],
-        seats: [
-            {
-                ...platinumSeats,
-                seats: generateSeats(9, 'A'), 
-            },
-            {
-                ...goldSeats,
-                seats: generateSeats(6, 'B'),
-            },
-            {
-                ...silverSeats,
-                seats: generateSeats(7, 'C', [0]), 
-            },
-        ]
-    },
+const initialState = {
+        'show1': {
+            showId: 'show1',
+            displayName: 'Show 1',
+            seatSelected: ['A1'],
+            seats: {
+                'Platinum': generateSeats(9, 'A'), 
+                'Gold': generateSeats(6, 'B'),
+                'Silver': generateSeats(7, 'C', [0]), 
+            }
+        }
+    };
     // {
     //     showId: '2',
     //     displayName: 'Show 2',
@@ -72,24 +51,28 @@ const initialState = [
     //     ]
     // }
 
-];
+// ];
 
 let reducer = (state = initialState, action) => {
     switch(action.type) {
         case 'SelectSeat': {
-            const newState = [...state]; 
-            const {showId, seat , seatNumber } = action.payload
-            const index = state.findIndex(x => x.showId == showId);
-
-            if (newState[index].seatSelected.includes(seatNumber)) {
-                newState[index].seatSelected = newState[index].seatSelected.filter(x => x !== seatNumber);    
+            const { showId, seatNumber } = action.payload;
+            let seatSelected;
+            
+            if (state[showId].seatSelected.includes(seatNumber)) {
+                seatSelected = state[showId].seatSelected.filter(x => x!= seatNumber)
             } else {
-                newState[index].seatSelected = [...newState[index].seatSelected, seatNumber];
+                seatSelected = [...state[showId].seatSelected, seatNumber];
+            }
+
+            const abc = {
+                ...state,
+                [showId]: {
+                    ...state[showId],
+                    seatSelected
+                }
             }
             
-            const abc = [
-                ...new Set(state, newState)
-            ];
             return abc;
         }
         default: {

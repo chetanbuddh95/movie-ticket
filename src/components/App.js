@@ -10,42 +10,65 @@ const Header = ({title}) => {
 }
 
 class App extends React.Component {
-    bookseat = ({show, seat, seatNumber}) => {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            selectedShow: 'show1'
+        }
+    }
+
+    bookseat = ({show, seatNumber, seatType}) => {
         const { showId } = show
-        this.props.selectSeat({showId, seat, seatNumber});
+        this.props.selectSeat({showId, seatNumber, seatType});
     }
 
     booktickets = () => {
 
     }
 
+    change = (event) => {
+        this.setState({selectedShow: event.target.value});
+    }
+
     render() {
+        const show = this.props.shows[this.state.selectedShow];
         return (
             <div className='container'>
+                <select  onChange={this.change} value={this.state.selectedShow}>
+                    <option value='show1'>
+                        show 1
+                    </option>
+                    <option value='show2'>
+                        show 2
+                    </option>
+                    <option value='show3'>
+                        show 3
+                    </option>
+                </select>
                 <div className='inner'>
-                        {
-                            this.props.shows.map((show) => 
-                                <div key={show.showId} className="seat-container">
-                                    <Header key={show.showId} title={show.displayName}/>
-                                    {show.seats.map((seat) => 
-                                        <div key={seat.type}>
-                                            {seat.seats.map((i) => 
-                                                <div className={show.seatSelected.includes(i)? 'blue' : ''}>
-                                                <span 
-                                                    key={i} 
-                                                    className={i == null ? 'v-hideen' : ''} 
-                                                    onClick={() => this.bookseat({show, seat, seatNumber: i})}>{`${i}`}</span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
-                            )   
-                        }
-                    <br />
-                    <div>
-                        <button onClick={this.booktickets}>Book tickets</button>
-                    </div>
+                    <h4>Selected Show: {this.state.selectedShow}</h4>
+                    {show &&
+                        <div className="seat-container">
+                            { Object.entries(show.seats).map(([key, values]) => {
+                                return (
+                                    <div>
+                                        { values.map((seatNumber) => {
+                                            const selectedSeat = show.seatSelected.includes(seatNumber)? 'selected-seat' : '';
+                                                return (
+                                                    <span 
+                                                        key={seatNumber} 
+                                                        className={`seat ${selectedSeat} ${seatNumber == null ? 'v-hideen' : ''}`} 
+                                                        onClick={() => this.bookseat({show, seatNumber, seatType: key})}
+                                                    >{`${seatNumber}`}</span>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    }  
                 </div>
                 <div>
 

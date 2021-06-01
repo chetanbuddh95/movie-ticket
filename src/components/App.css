@@ -11,13 +11,14 @@
   visibility: hidden;
 }
 
-.seat-container > div > div> span {
+span.seat {
   margin-right: 10px;
   background: #dcd4d1;
   cursor: pointer;
   padding: 4px 8px;
 }
 
-.blue {
-  color: blue;
+span.selected-seat {
+  background: blue;
+  color: white;
 }
