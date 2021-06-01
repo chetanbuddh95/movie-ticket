@@ -24,7 +24,10 @@ class App extends React.Component {
     }
 
     booktickets = () => {
-
+        this.props.booktickets({ 
+            showId: this.state.selectedShow, 
+            tickets: this.props.selectedSeats[this.state.selectedShow]
+        });
     }
 
     change = (event) => {
@@ -67,6 +70,11 @@ class App extends React.Component {
                                     </div>
                                 )
                             })}
+                          <div>
+                              <button onClick={this.booktickets}>
+                                  Book tickets
+                              </button>
+                          </div>  
                         </div>
                     }  
                 </div>

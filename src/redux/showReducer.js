@@ -1,4 +1,4 @@
-import { generateSeats } from '../utiils'
+import { generateSeats } from '../utiils';
 
 const initialState = {
         'show1': {
@@ -65,7 +65,7 @@ let reducer = (state = initialState, action) => {
                 seatSelected = [...state[showId].seatSelected, seatNumber];
             }
 
-            const abc = {
+            const newState = {
                 ...state,
                 [showId]: {
                     ...state[showId],
@@ -73,7 +73,7 @@ let reducer = (state = initialState, action) => {
                 }
             }
             
-            return abc;
+            return newState;
         }
         default: {
             return state;
