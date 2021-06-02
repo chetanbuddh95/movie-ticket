@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selecteSeat, bookTickets } from '../actions';
+import { selectSeat, bookTickets } from '../actions';
 import App from '../components/App';
 
 const AppContainer = (props) => (
@@ -22,7 +22,7 @@ const mapStatetoProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        selectSeat: (payload) => dispatch(selecteSeat(payload)),
+        selectSeat: (payload) => dispatch(selectSeat(payload)),
         bookTickets: (payload) => dispatch(bookTickets(payload)),
     }
 }

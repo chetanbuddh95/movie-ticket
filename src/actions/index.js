@@ -2,7 +2,7 @@ import * as constants from '../constants';
 
 let orderId = 0;
 
-export const selecteSeat = (payload) => ({
+export const selectSeat = (payload) => ({
     type: constants.SELECT_SEAT,
     payload
 });
