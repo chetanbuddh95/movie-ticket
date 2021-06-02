@@ -1,12 +1,14 @@
+import * as constants from '../constants';
+
 let orderId = 0;
 
 export const selecteSeat = (payload) => ({
-    type: 'SELECT_SEAT',
+    type: constants.SELECT_SEAT,
     payload
 });
 
 export const bookTickets = (opts) => ({
-    type: 'BOOK_TICKETS',
+    type: constants.BOOK_TICKETS,
     payload: {
         ...opts,
         id: orderId++,

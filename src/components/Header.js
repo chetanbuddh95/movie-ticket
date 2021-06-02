@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
+import './Header.css';
 
 function Header ({shows}) {
     return (
-        <nav>
+        <nav className='navbar'>
           <ul>
             {Object.entries(shows).map(([key, value]) =>
                 <li key={key}>
