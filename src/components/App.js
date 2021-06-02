@@ -6,6 +6,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect,
 } from "react-router-dom";
 import './css/App.css';
 
@@ -23,18 +24,24 @@ class App extends React.Component {
         if (show.seatSelected.length) {
             this.props.bookTickets({ 
                 showId, 
-                tickets: this.props.selectedSeats[showId]
+                tickets: this.props.selectedSeats[showId],
+                showName: show.displayName,
             });
+            alert(`Successfully Booked - ${show.displayName}`);
         }
     }
 
     render() {
+        const defaultShow = 'show1';
         return (
             <Router>
             <div>
               <Header shows={this.props.shows}/>
               <div>
                 <Switch>
+                    <Route path='/' exact>
+                        <Redirect to={defaultShow} />
+                    </Route>
                     <Route path="/order">
                         <Order orders={this.props.orders}/>
                     </Route>

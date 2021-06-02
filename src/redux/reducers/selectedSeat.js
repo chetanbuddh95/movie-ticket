@@ -8,7 +8,7 @@ const initialState = {
     },
     'show2': {
         'Platinum': [],
-        'Gold': ['B1'],
+        'Gold': ['B2'],
         'Silver': [],
     },
     'show3': {
@@ -41,13 +41,12 @@ let selectedSeats = (state = initialState, action) => {
             return newState;
         }
         case constants.BOOK_TICKETS: {
-            const { showId, tickets } = action.payload;
+            const { showId } = action.payload;
 
             const newState = {
                 ...state,
                 [showId]: {
                     ...state[showId],
-                    // tickets
                     'Platinum': [],
                     'Gold': [],
                     'Silver': [],

@@ -32,10 +32,10 @@ function Order({orders}) {
     return (
         <>
             <h3>Orders</h3>
-            <table>
+            <table id="order-table">
                 <tr>
                     <th>Id</th>
-                    <th>Show Id</th>
+                    <th>Show</th>
                     <th>SubTotal</th>
                     <th>Service Tax</th>
                     <th>SBC</th>
@@ -45,7 +45,7 @@ function Order({orders}) {
                 {orders.map((order) => 
                     <tr key={order.id}> 
                         <td>{order.id}</td>
-                        <th>{order.showId}</th>
+                        <th>{order.showName}</th>
                         <td>{order.subTotal}</td>
                         <td>{order.serviceTax.toFixed(2)}</td>
                         <td>{order.SBC.toFixed(2)}</td>
@@ -57,10 +57,24 @@ function Order({orders}) {
             <hr />
             <div>
                 <h3>Total Sales</h3>
-                <div>Revenue: Rs. {totalSales.revenue}</div>
-                <div>Service Tax: Rs. {totalSales.serviceTax.toFixed(2)}</div>
-                <div>Swachh Bharat Cess: Rs. {totalSales.SBC.toFixed(2)}</div>
-                <div>Krishi Kalyan Cess: Rs. {totalSales.KKC.toFixed(2)}</div>
+                <table id="sales-table">
+                    <tr>
+                        <td>Revenue: </td>
+                        <td>{`Rs. ${totalSales.revenue}`}</td>
+                    </tr>
+                    <tr>
+                        <td>Service Tax:</td>
+                        <td>{`Rs. ${totalSales.serviceTax.toFixed(2)}`}</td>
+                    </tr>
+                    <tr>
+                        <td>Swachh Bharat Cess:</td>
+                        <td>{`Rs. ${totalSales.SBC.toFixed(2)}`}</td>
+                    </tr>
+                    <tr>
+                        <td>Krishi Kalyan Cess:</td>
+                        <td>{`Rs. ${totalSales.KKC.toFixed(2)}`}</td>
+                    </tr>
+                </table>
             </div>
         </>
     );

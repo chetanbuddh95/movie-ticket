@@ -31,11 +31,12 @@ function getTotal(tickets) {
 let orders = (state = initialState, action) => {
     switch(action.type) {
         case constants.BOOK_TICKETS: {
-            const { showId, tickets, id } = action.payload;
+            const { showId, tickets, id, showName } = action.payload;
     
             const newOrder = {
                 id,
                 showId,
+                showName,
                 ...getTotal(tickets),
             }
 
