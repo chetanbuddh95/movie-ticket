@@ -22,3 +22,7 @@ span.selected-seat {
   background: blue;
   color: white;
 }
+
+.active  {
+  color: red;
+}
