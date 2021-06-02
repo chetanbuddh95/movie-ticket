@@ -1,6 +1,6 @@
 import * as constants from '../constants';
 
-let orderId = 0;
+let orderId = 1;
 
 export const selectSeat = (payload) => ({
     type: constants.SELECT_SEAT,

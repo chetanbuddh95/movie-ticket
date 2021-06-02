@@ -1,4 +1,5 @@
-import { generateSeats } from '../utiils';
+import { generateSeats } from '../../utiils';
+import * as constants from '../../constants';
 
 const initialState = {
     'show1': {
@@ -33,9 +34,9 @@ const initialState = {
     }
 };
 
-let reducer = (state = initialState, action) => {
+let show = (state = initialState, action) => {
     switch(action.type) {
-        case 'SELECT_SEAT': {
+        case constants.SELECT_SEAT: {
             const { showId, seatNumber } = action.payload;
             let seatSelected;
             
@@ -61,4 +62,4 @@ let reducer = (state = initialState, action) => {
     }
 }
 
-export default reducer;
+export default show;

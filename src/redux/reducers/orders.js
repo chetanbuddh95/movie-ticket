@@ -1,5 +1,5 @@
-import { seatPrice } from '../utiils';
-import * as constants from '../constants';
+import { seatPrice } from '../../utiils';
+import * as constants from '../../constants';
 
 const initialState = [];
 
@@ -7,6 +7,7 @@ function getTotal(tickets) {
     let subTotal = 0;
     let SBC = 0;
     let KKC = 0;
+
     Object.entries(tickets).map(([key, value]) => {
         value.map((v) => {
             const price = seatPrice[key];
@@ -20,14 +21,14 @@ function getTotal(tickets) {
 
     return {
         subTotal,
-        SBC: SBC.toFixed(2),
-        KKC: KKC.toFixed(2),
-        serviceTax: calculatedServiceTax.toFixed(2),
+        SBC: SBC,
+        KKC: KKC,
+        serviceTax: calculatedServiceTax,
         total
     };
 }
 
-let reducer = (state = initialState, action) => {
+let orders = (state = initialState, action) => {
     switch(action.type) {
         case constants.BOOK_TICKETS: {
             const { showId, tickets, id } = action.payload;
@@ -44,9 +45,9 @@ let reducer = (state = initialState, action) => {
             ];
         }
         default: {
-            return [] ;
+            return state;
         }
     }
 }
 
-export default reducer; 
+export default orders; 

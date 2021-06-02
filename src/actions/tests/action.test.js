@@ -13,4 +13,19 @@ describe('Actions', () => {
       payload,
     });
   });
+
+  it('should create BOOK_TICKETS action', () => {
+    const payload = {
+        id: 1,
+        showId: 'show1',
+        tickets: {
+          'Gold': ['B1'],
+        }
+    };
+
+    expect(actions.bookTickets(payload)).toEqual({
+      type: 'BOOK_TICKETS',
+      payload,
+    });
+  });
 })
