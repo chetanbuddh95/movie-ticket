@@ -7,14 +7,14 @@ const initialState = {
         'Silver': [],
     },
     'show2': {
-        'Platinum': ['B1'],
-        'Gold': [],
+        'Platinum': [],
+        'Gold': ['B1'],
         'Silver': [],
     },
     'show3': {
-        'Platinum': ['C1'],
+        'Platinum': [],
         'Gold': [],
-        'Silver': [],
+        'Silver': ['C1'],
     }
 };
 
@@ -39,6 +39,22 @@ let selectedSeats = (state = initialState, action) => {
             }
             
             return newState;
+        }
+        case constants.BOOK_TICKETS: {
+            const { showId, tickets } = action.payload;
+
+            const newState = {
+                ...state,
+                [showId]: {
+                    ...state[showId],
+                    // tickets
+                    'Platinum': [],
+                    'Gold': [],
+                    'Silver': [],
+                }
+            }
+            
+            return newState;         
         }
         default: {
             return state;

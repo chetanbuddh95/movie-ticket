@@ -13,14 +13,19 @@ class App extends React.Component {
     
     selectSeat = ({show, seatNumber, seatType}) => {
         const { showId } = show;
-        this.props.selectSeat({showId, seatNumber, seatType});
+        if (!show.bookedSeats.includes(seatNumber)) {
+            this.props.selectSeat({showId, seatNumber, seatType});
+        }
     }
 
     bookTickets = (showId) => {
-        this.props.bookTickets({ 
-            showId, 
-            tickets: this.props.selectedSeats[showId]
-        });
+        const show = this.props.shows[showId];
+        if (show.seatSelected.length) {
+            this.props.bookTickets({ 
+                showId, 
+                tickets: this.props.selectedSeats[showId]
+            });
+        }
     }
 
     render() {

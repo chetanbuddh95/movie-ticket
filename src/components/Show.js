@@ -7,13 +7,14 @@ function Show(props) {
                 return (
                     <div key={key}>
                         { values.map((seatNumber) => {
-                            const selectedSeat = show.seatSelected.includes(seatNumber)? 'selected-seat' : '';
-                                return (
-                                    <span 
-                                        key={seatNumber} 
-                                        className={`seat ${selectedSeat} ${seatNumber == null ? 'v-hideen' : ''}`} 
-                                        onClick={() => selectSeat({show, seatNumber, seatType: key})}
-                                    >{`${seatNumber}`}</span>
+                            const selectedSeat = show.seatSelected.includes(seatNumber) ? 'selected-seat ' : '';
+                            const bookedSeat = show.bookedSeats.includes(seatNumber) ? 'booked-seat ' : '';
+                            return (
+                                <span 
+                                    key={seatNumber} 
+                                    className={`seat ${selectedSeat} ${bookedSeat} ${seatNumber == null ? 'v-hideen' : ''}`} 
+                                    onClick={() => selectSeat({show, seatNumber, seatType: key})}
+                                >{`${seatNumber}`}</span>
                                 )
                             })
                         }

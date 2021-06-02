@@ -6,6 +6,7 @@ const initialState = {
         showId: 'show1',
         displayName: 'Show 1',
         seatSelected: ['A1'],
+        bookedSeats: [],
         seats: {
             'Platinum': generateSeats(9, 'A'), 
             'Gold': generateSeats(6, 'B'),
@@ -15,7 +16,8 @@ const initialState = {
     'show2': {
         showId: 'show2',
         displayName: 'Show 2',
-        seatSelected: ['B1'],
+        seatSelected: ['B2'],
+        bookedSeats: [],
         seats: {
             'Platinum': generateSeats(7, 'A'), 
             'Gold': generateSeats(6, 'B', [0]),
@@ -26,6 +28,7 @@ const initialState = {
         showId: 'show3',
         displayName: 'Show 3',
         seatSelected: ['C1'],
+        bookedSeats: [],
         seats: {
             'Platinum': generateSeats(7, 'A'), 
             'Gold': generateSeats(8, 'B'),
@@ -51,6 +54,20 @@ let show = (state = initialState, action) => {
                 [showId]: {
                     ...state[showId],
                     seatSelected
+                }
+            }
+            
+            return newState;
+        }
+        case constants.BOOK_TICKETS: {
+            const { showId } = action.payload;
+            
+            const newState = {
+                ...state,
+                [showId]: {
+                    ...state[showId],
+                    bookedSeats: [...new Set([...state[showId].bookedSeats, ...state[showId].seatSelected])],
+                    seatSelected: [],
                 }
             }
             

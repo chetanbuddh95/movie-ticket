@@ -18,3 +18,8 @@ span.selected-seat {
   background: blue;
   color: white;
 }
+
+span.booked-seat {
+  background:green;
+  color: white;
+}
