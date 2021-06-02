@@ -1,17 +1,18 @@
 function Show(props) {
-    const { show, bookseat, booktickets } = props; 
+    const { show, selectSeat, bookTickets } = props; 
+
     return (
         <div className="seat-container">
             { Object.entries(show.seats).map(([key, values]) => {
                 return (
-                    <div>
+                    <div key={key}>
                         { values.map((seatNumber) => {
                             const selectedSeat = show.seatSelected.includes(seatNumber)? 'selected-seat' : '';
                                 return (
                                     <span 
                                         key={seatNumber} 
                                         className={`seat ${selectedSeat} ${seatNumber == null ? 'v-hideen' : ''}`} 
-                                        onClick={() => bookseat({show, seatNumber, seatType: key})}
+                                        onClick={() => selectSeat({show, seatNumber, seatType: key})}
                                     >{`${seatNumber}`}</span>
                                 )
                             })
@@ -20,7 +21,7 @@ function Show(props) {
                 )
             })}
             <div>
-                <button onClick={booktickets}>
+                <button onClick={() => bookTickets(show.showId)}>
                     Book tickets
                 </button>
             </div>  

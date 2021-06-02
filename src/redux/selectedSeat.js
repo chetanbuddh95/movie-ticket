@@ -3,12 +3,22 @@ const initialState = {
         'Platinum': ['A1'],
         'Gold': [],
         'Silver': [],
+    },
+    'show2': {
+        'Platinum': ['B1'],
+        'Gold': [],
+        'Silver': [],
+    },
+    'show3': {
+        'Platinum': ['C1'],
+        'Gold': [],
+        'Silver': [],
     }
 };
 
 let reducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'SelectSeat': {
+        case 'SELECT_SEAT': {
             const { showId, seatNumber, seatType } = action.payload;
             let selectedSeat;
 

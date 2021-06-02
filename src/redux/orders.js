@@ -18,30 +18,33 @@ function getTotal (tickets) {
             KKC += price * kkc / 100;
         });
     });
-    const serviceTax = subTotal * 14 / 100;
-    const total = Math.round(subTotal + SBC + KKC + serviceTax);
+    const calculatedServiceTax = subTotal * serviceTax / 100;
+    const total = Math.round(subTotal + SBC + KKC + calculatedServiceTax);
+
     return {
         subTotal,
-        SBC,
-        KKC,
-        serviceTax,
+        SBC: SBC.toFixed(2),
+        KKC: KKC.toFixed(2),
+        serviceTax: calculatedServiceTax.toFixed(2),
         total
     };
 }
 
 let reducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'BookTickets': {
-            const { showId, tickets} = action.payload;
+        case 'BOOK_TICKETS': {
+            const { showId, tickets, id } = action.payload;
     
             const newOrder = {
-                id: 'something',
+                id,
                 showId,
                 ...getTotal(tickets),
             }
 
-            console.log(newOrder);
-            return [];
+            return [
+                ...state,
+                newOrder,
+            ];
         }
         default: {
             return [] ;

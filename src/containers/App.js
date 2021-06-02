@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
+import { selecteSeat, bookTickets } from '../actions';
 import App from '../components/App';
-
 
 const AppContainer = (props) => (
     <App 
         shows={props.shows}
         selectSeat={props.selectSeat}
+        bookTickets={props.bookTickets}
         selectedSeats={props.selectedSeats}
-        booktickets={props.booktickets}
+        orders={props.orders}
     />
 )
 
@@ -15,13 +16,14 @@ const mapStatetoProps = state => {
     return {
         shows: state.shows,
         selectedSeats: state.selectedSeats,
+        orders: state.orders
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        selectSeat: (payload) => dispatch({type: 'SelectSeat', payload}),
-        booktickets: (payload) => dispatch({type: 'BookTickets', payload}),
+        selectSeat: (payload) => dispatch(selecteSeat(payload)),
+        bookTickets: (payload) => dispatch(bookTickets(payload)),
     }
 }
 
