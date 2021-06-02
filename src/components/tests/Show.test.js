@@ -11,6 +11,7 @@ describe('Show component', () => {
             show: {
                 showId: 'show1',
                 seatSelected: ['B2'],
+                bookedSeats: ['B3'],
                 seats: {
                     'Gold': [null, 'B2', 'B3'] 
                 }
