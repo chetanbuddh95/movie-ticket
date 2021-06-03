@@ -9,7 +9,7 @@ describe('App component', () => {
         shows: {
             'show1': {
                 showId: 'show1',
-                seatSelected: ['A1'],
+                selectedSeats: ['A1'],
                 bookedSeats: [],
             }
         },
@@ -69,7 +69,7 @@ describe('App component', () => {
             shows: {
                 'show1': {
                     showId: 'show1',
-                    seatSelected: [],
+                    selectedSeats: [],
                     bookedSeats: [],
                 }
         } });

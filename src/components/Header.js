@@ -12,7 +12,7 @@ function Header ({shows}) {
               )
             }
             <li>
-              <NavLink to="/order" activeClassName="active">Order</NavLink>
+              <NavLink to="/orders" activeClassName="active">Orders</NavLink>
             </li>
           </ul>
       </nav>

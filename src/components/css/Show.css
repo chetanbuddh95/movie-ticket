@@ -1,0 +1,29 @@
+.show-container > div {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.show-container > div > button {
+    padding: 6px 12px;
+    background-color: azure;
+    outline: none;
+    border-radius: 5px;
+}
+
+span.seat {
+    margin-right: 10px;
+    background: #dcd4d1;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+span.selected-seat {
+    background: blue;
+    color: white;
+}
+
+span.booked-seat {
+    background:green;
+    color: white;
+}
+  

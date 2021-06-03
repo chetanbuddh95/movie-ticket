@@ -1,13 +1,15 @@
+import './css/Show.css';
+
 function Show(props) {
     const { show, selectSeat, bookTickets } = props; 
 
     return (
-        <div className="seat-container">
+        <div className="show-container">
             { Object.entries(show.seats).map(([key, values]) => {
                 return (
                     <div key={key}>
                         { values.map((seatNumber) => {
-                            const selectedSeat = show.seatSelected.includes(seatNumber) ? 'selected-seat ' : '';
+                            const selectedSeat = show.selectedSeats.includes(seatNumber) ? 'selected-seat ' : '';
                             const bookedSeat = show.bookedSeats.includes(seatNumber) ? 'booked-seat ' : '';
                             return (
                                 <span 
@@ -23,7 +25,7 @@ function Show(props) {
             })}
             <div>
                 <button onClick={() => bookTickets(show.showId)}>
-                    Book tickets
+                    Book Tickets
                 </button>
             </div>  
         </div>

@@ -1,25 +1,12 @@
-.seat-container > div {
-  margin-bottom: 20px;
-  display: flex;
+#root {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.container {
+  padding: 4px 12px;
 }
 
 .v-hideen {
   visibility: hidden;
-}
-
-span.seat {
-  margin-right: 10px;
-  background: #dcd4d1;
-  cursor: pointer;
-  padding: 4px 8px;
-}
-
-span.selected-seat {
-  background: blue;
-  color: white;
-}
-
-span.booked-seat {
-  background:green;
-  color: white;
 }

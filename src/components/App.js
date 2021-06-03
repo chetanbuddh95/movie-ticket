@@ -21,7 +21,7 @@ class App extends React.Component {
 
     bookTickets = (showId) => {
         const show = this.props.shows[showId];
-        if (show.seatSelected.length) {
+        if (show.selectedSeats.length) {
             this.props.bookTickets({ 
                 showId, 
                 tickets: this.props.selectedSeats[showId],
@@ -35,14 +35,14 @@ class App extends React.Component {
         const defaultShow = 'show1';
         return (
             <Router>
-            <div>
+            <>
               <Header shows={this.props.shows}/>
-              <div>
+              <div className='container'>
                 <Switch>
                     <Route path='/' exact>
                         <Redirect to={defaultShow} />
                     </Route>
-                    <Route path="/order">
+                    <Route path="/orders">
                         <Order orders={this.props.orders}/>
                     </Route>
                     {Object.entries(this.props.shows).map(([key, value]) => 
@@ -52,7 +52,7 @@ class App extends React.Component {
                     )}
                 </Switch>
               </div>
-            </div>
+            </>
           </Router>
         )
     }
