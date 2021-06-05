@@ -1,40 +1,24 @@
-import { generateSeats } from '../../utiils';
+import { generateSeats, createShow, seatTypes } from '../../utiils';
 import * as constants from '../../constants';
 
+const [ platinum, gold, silver ] = seatTypes;
+
 const initialState = {
-    'show1': {
-        showId: 'show1',
-        displayName: 'Show 1',
-        selectedSeats: ['A1'],
-        bookedSeats: [],
-        seats: {
-            'Platinum': generateSeats(9, 'A'), 
-            'Gold': generateSeats(6, 'B'),
-            'Silver': generateSeats(7, 'C', [0]), 
-        }
-    },
-    'show2': {
-        showId: 'show2',
-        displayName: 'Show 2',
-        selectedSeats: ['B2'],
-        bookedSeats: [],
-        seats: {
-            'Platinum': generateSeats(7, 'A'), 
-            'Gold': generateSeats(6, 'B', [0]),
-            'Silver': generateSeats(7, 'C'), 
-        }
-    },
-    'show3': {
-        showId: 'show3',
-        displayName: 'Show 3',
-        selectedSeats: ['C1'],
-        bookedSeats: [],
-        seats: {
-            'Platinum': generateSeats(7, 'A'), 
-            'Gold': generateSeats(8, 'B'),
-            'Silver': generateSeats(9, 'C'), 
-        }
-    }
+    ...createShow('show1', 'Show 1', {
+        [platinum]: generateSeats(9, 'A'),
+        [gold]: generateSeats(6, 'B'),
+        [silver]: generateSeats(7, 'C', [0]), 
+    }),
+    ...createShow('show2', 'Show 2', {
+        [platinum]: generateSeats(7, 'A'),
+        [gold]: generateSeats(6, 'B', [0]),
+        [silver]: generateSeats(7, 'C'), 
+    }),
+    ...createShow('show3', 'Show 3', {
+        [platinum]: generateSeats(7, 'A'),
+        [gold]: generateSeats(8, 'B'),
+        [silver]: generateSeats(9, 'C'), 
+    }),
 };
 
 let shows = (state = initialState, action) => {

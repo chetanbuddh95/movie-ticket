@@ -4,6 +4,14 @@ const seatPrice = {
     'Silver': 240
 } 
 
+const seatTypes = [
+    'Platinum',
+    'Gold',
+    'Silver',
+];
+
+const showIds = [];
+
 const generateSeats = (numberOfseat, preFix, excludeSeat = []) => {
     const arr = [];
     for (let i = 0; i < numberOfseat; i++) {
@@ -16,7 +24,25 @@ const generateSeats = (numberOfseat, preFix, excludeSeat = []) => {
     return arr;
 }
 
+const createShow = (showId, displayName, seatMap) => {
+    showIds.push(showId);
+    return {
+        [showId]: {
+            showId,
+            displayName,
+            selectedSeats: [],
+            bookedSeats: [],
+            seats: {
+                ...seatMap
+            }
+        },
+    }
+}
+
 export {
     generateSeats,
+    createShow,
     seatPrice,
+    seatTypes,
+    showIds,
 }

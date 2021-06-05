@@ -1,21 +1,19 @@
 import * as constants from '../../constants';
+import { seatTypes, showIds } from '../../utiils';
+
+const [platinum, gold, silver] = seatTypes;
+const shows = {};
+
+showIds.forEach((id) => {
+    shows[id] = {
+        [platinum]: [],
+        [gold]: [],
+        [silver]: [],
+    }
+});
 
 const initialState = {
-    'show1': {
-        'Platinum': ['A1'],
-        'Gold': [],
-        'Silver': [],
-    },
-    'show2': {
-        'Platinum': [],
-        'Gold': ['B2'],
-        'Silver': [],
-    },
-    'show3': {
-        'Platinum': [],
-        'Gold': [],
-        'Silver': ['C1'],
-    }
+    ...shows,
 };
 
 let selectedSeats = (state = initialState, action) => {
