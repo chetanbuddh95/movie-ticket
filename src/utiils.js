@@ -1,3 +1,9 @@
+const seatPrice = {
+    'Platinum': 320,
+    'Gold': 280,
+    'Silver': 240
+} 
+
 const generateSeats = (numberOfseat, preFix, excludeSeat = []) => {
     const arr = [];
     for (let i = 0; i < numberOfseat; i++) {
@@ -12,4 +18,5 @@ const generateSeats = (numberOfseat, preFix, excludeSeat = []) => {
 
 export {
     generateSeats,
+    seatPrice,
 }

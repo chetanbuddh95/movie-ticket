@@ -1,56 +1,59 @@
 import React from 'react';
-import './App.css';
-
-const Header = ({title}) => {
-    return (
-        <header>
-            <h3>{title}</h3>
-        </header>
-    );
-}
+import Header from './Header';
+import Order from './Order';
+import Show from './Show';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from "react-router-dom";
+import './css/App.css';
 
 class App extends React.Component {
-    bookseat = ({show, seat, seatNumber}) => {
-        const { showId } = show
-        this.props.selectSeat({showId, seat, seatNumber});
+    
+    selectSeat = ({show, seatNumber, seatType}) => {
+        const { showId } = show;
+        if (!show.bookedSeats.includes(seatNumber)) {
+            this.props.selectSeat({showId, seatNumber, seatType});
+        }
     }
 
-    booktickets = () => {
-
+    bookTickets = (showId) => {
+        const show = this.props.shows[showId];
+        if (show.selectedSeats.length) {
+            this.props.bookTickets({ 
+                showId, 
+                tickets: this.props.selectedSeats[showId],
+                showName: show.displayName,
+            });
+            alert(`Successfully Booked - ${show.displayName}`);
+        }
     }
 
     render() {
+        const defaultShow = 'show1';
         return (
-            <div className='container'>
-                <div className='inner'>
-                        {
-                            this.props.shows.map((show) => 
-                                <div key={show.showId} className="seat-container">
-                                    <Header key={show.showId} title={show.displayName}/>
-                                    {show.seats.map((seat) => 
-                                        <div key={seat.type}>
-                                            {seat.seats.map((i) => 
-                                                <div className={show.seatSelected.includes(i)? 'blue' : ''}>
-                                                <span 
-                                                    key={i} 
-                                                    className={i == null ? 'v-hideen' : ''} 
-                                                    onClick={() => this.bookseat({show, seat, seatNumber: i})}>{`${i}`}</span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
-                            )   
-                        }
-                    <br />
-                    <div>
-                        <button onClick={this.booktickets}>Book tickets</button>
-                    </div>
-                </div>
-                <div>
-
-                </div>
-            </div>
+            <Router>
+            <>
+              <Header shows={this.props.shows}/>
+              <div className='container'>
+                <Switch>
+                    <Route path='/' exact>
+                        <Redirect to={defaultShow} />
+                    </Route>
+                    <Route path="/orders">
+                        <Order orders={this.props.orders}/>
+                    </Route>
+                    {Object.entries(this.props.shows).map(([key, value]) => 
+                        <Route key={key} path={`/${key}`}>
+                            <Show key={key} show={value} selectSeat={this.selectSeat} bookTickets={this.bookTickets}/>
+                        </Route>    
+                    )}
+                </Switch>
+              </div>
+            </>
+          </Router>
         )
     }
 }

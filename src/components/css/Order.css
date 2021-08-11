@@ -1,0 +1,23 @@
+#order-table { 
+    width: 480px;
+}
+
+#order-table th {
+    text-align: right;
+}
+
+#order-table td {
+    text-align: right;
+}
+
+#sales-table {
+    width: 250px;
+}
+
+#sales-table td:first-child {
+    text-align: left;
+}
+
+#sales-table td:last-child {
+    text-align: right;
+}

@@ -1,0 +1,12 @@
+#root {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.container {
+  padding: 4px 12px;
+}
+
+.v-hideen {
+  visibility: hidden;
+}

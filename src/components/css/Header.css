@@ -1,0 +1,32 @@
+.navbar {
+    padding: 4px 8px;
+    background-color: azure;
+    margin-bottom: 10px;
+  }
+  
+  .navbar ul {
+    display: flex;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .navbar ul > li {
+    margin: 5px;
+  }
+  
+  .navbar ul > li > a {
+    color: black;
+    padding: 8px 4px;
+  }
+  
+  .navbar ul > li > a:hover {
+    background-color: gold;
+    color: black;
+  }
+  
+  .navbar ul .active {
+    background-color: gold;
+    color:Black;
+    font-weight:bold;
+  }
+  
